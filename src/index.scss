@@ -1,0 +1,212 @@
+body {
+	margin: 0;
+	background-color: LightGray;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+// page styles
+%pageCentarlBox {
+	box-shadow: 3px 6px 41px 6px #0e081b;
+	width: 50vw;
+	text-align: center;
+	font-family: Tahoma;
+}
+
+.HomePage {
+	@extend %pageCentarlBox;
+	background-color: #fc6;
+}
+
+.ErrorPage {
+	@extend %pageCentarlBox;
+	// background-color: whitesmoke;
+}
+
+.outBox {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	margin: 0 auto
+}
+
+// card styles
+.cardBox {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	margin: 0 auto;
+	// background-color: red;
+}
+
+.cardItem {
+	background-color: whitesmoke;
+	width: 20%;
+	margin-bottom: 10px;
+	box-shadow: 0px 0px 5px 1px #0e081b;
+	border-radius: 10px;
+}
+
+.cardItemDone {
+	background-color: MediumSeaGreen;
+}
+
+.cardItemDeleted {
+	background-color: #fc6;
+}
+
+.cardItemDeletedDone {
+	background-color: #CCC;
+}
+
+.cardTextarea {
+	width: 100%;
+	outline: none;
+	border-style: none;
+	background-color: transparent;
+	resize: none;
+}
+
+.cardButtonDeleteArea {
+	width: 50%;
+	margin-bottom: 10px;
+	float: right;
+}
+
+.cardBottomArea {
+	width: 95%;
+	margin: 0 auto;
+}
+
+.cardBottomCheckboxArea {
+	width: 50%;
+	height: 100%;
+	float: left;
+	align-items: center;
+	justify-content: left;
+	display: flex;
+}
+
+.lblCheckbox {
+	font-size: 0.9em;
+	font-weight: bold;
+	color: #fc6;
+}
+
+input[type=checkbox] {
+	margin-right: 10px;
+}
+
+// navPanel styles
+.navPanel {
+	position: fixed;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 200px;
+}
+
+%navPanelStyle {
+	width: 100%;
+	height: 50%;
+	background-color: DarkSlateGray;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0 auto;
+}
+
+.navPanelTop {
+	@extend %navPanelStyle
+}
+
+.navPanelBottom {
+	@extend %navPanelStyle
+}
+
+.navPanelCheckBoxArea {
+	width: 17%;
+}
+
+.navPanelBtnArea {
+	width: 15%;
+}
+
+// buttons
+button.cardButton {
+    font-size: 14px;
+    text-decoration: none;
+    cursor: pointer;
+    display:block;
+	width: 100px;
+	height: 30px;
+    // font-weight: bold;
+	
+	margin:5px auto;
+	text-align:center;
+    padding: 1px 5px;
+    color: #717171;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+    -webkit-box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2), inset 0 0 6px 0 rgba(255, 255, 255, 0.3), 0 1px 2px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2), inset 0 0 6px 0 rgba(255, 255, 255, 0.3), 0 1px 2px rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2), inset 0 0 6px 0 rgba(255, 255, 255, 0.3), 0 1px 2px rgba(0, 0, 0, 0.4);
+    background: #f6f6f6;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f6f6f6), to(#d4d4d4));
+    background: -webkit-linear-gradient(#f6f6f6, #d4d4d4);
+    background-image: -moz-linear-gradient(top, #f6f6f6, #d4d4d4);
+    background-image: -moz-gradient(top, #f6f6f6, #d4d4d4);
+    border: 1px solid #a1a1a1;
+}
+
+button.cardButton:hover {
+    background: #eecc11;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f6f6f6), to(#eecc11));
+    background: -webkit-linear-gradient(#f6f6f6, #eecc11);
+    background-image: -moz-linear-gradient(top, #f6f6f6, #eecc11);
+    background-image: -moz-gradient(top, #f6f6f6, #eecc11);
+}
+
+button.btnList {
+    font-size: 14px;
+    text-decoration: none;
+    cursor: pointer;
+    display:block;
+	width: 100px;
+	height: 30px;
+	
+	margin:5px auto;
+	text-align:center;
+    padding: 1px 5px;
+    color: #717171;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+    -webkit-box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2), inset 0 0 6px 0 rgba(255, 255, 255, 0.3), 0 1px 2px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2), inset 0 0 6px 0 rgba(255, 255, 255, 0.3), 0 1px 2px rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2), inset 0 0 6px 0 rgba(255, 255, 255, 0.3), 0 1px 2px rgba(0, 0, 0, 0.4);
+    background: #f6f6f6;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f6f6f6), to(#d4d4d4));
+    background: -webkit-linear-gradient(#f6f6f6, #d4d4d4);
+    background-image: -moz-linear-gradient(top, #f6f6f6, #d4d4d4);
+    background-image: -moz-gradient(top, #f6f6f6, #d4d4d4);
+    border: 1px solid #a1a1a1;
+}
+
+button.btnList:hover {
+    background: #eecc11;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f6f6f6), to(#eecc11));
+    background: -webkit-linear-gradient(#f6f6f6, #eecc11);
+    background-image: -moz-linear-gradient(top, #f6f6f6, #eecc11);
+    background-image: -moz-gradient(top, #f6f6f6, #eecc11);
+}
