@@ -136,7 +136,6 @@ class ConnectedCardList extends React.Component<IStateDispatchProps> {
 						</div>
 
 						{
-							// <div className="navPanelBtnArea" style={{backgroundColor:"blue"}}>
 							<div className="navPanelBtnArea">
 								{
 									(!this.props.FilterDeleted) ? <div style={{'marginRight': '5px', 'float': 'left'}}> {buttonMark} </div> : null
@@ -155,24 +154,8 @@ class ConnectedCardList extends React.Component<IStateDispatchProps> {
 										: <span></span>
 								}
 
-								{/* <a
-									className="btnToMainPage"
-									style = {{ 'float': 'right' }}
-									role="button"
-									href="/"
-								>
-									На главную
-								</a> */}
 								<div style={{'marginRight': '0px', 'float': 'right'}}>
-								<span style={{	'color': 'yellow', 
-												'float': 'left', 
-												'height': '40px', 
-												'width': '2px', 
-												'backgroundColor': 'red',
-												'marginRight': '5px'
-												
-											}}>
-								</span>
+
 								<button onClick={() => window.location.href='/'} className="navButton" >
 									На главную
 								</button>
@@ -181,7 +164,6 @@ class ConnectedCardList extends React.Component<IStateDispatchProps> {
 						}
 					</div>
 
-					{/* <div className="navPanelBottom" style={{backgroundColor:"green"}}> */}
 					<div className="navPanelBottom">
 						<div style={{'width': '27.5%', 'marginRight': '5px'}}>
 						<input

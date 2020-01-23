@@ -1,17 +1,24 @@
 import React from 'react'
 
 const NotFound = () => (
-	<div className="outBox">
-		<div className="ErrorPage">
+	<div className="ErrorPage">
+		<div className="ErrorPageBlock">
 			<h1>Ошибка в адресе</h1>
 			<hr />
-			<a
+			{/* <a
 				className="btn btn-warning btn-lg"
 				href="/"
 				role="button"
 			>
 				Войти в приложение
-            </a>
+            </a> */}
+
+			<button
+				className="btnToMainPage" 
+				onClick={() => window.location.href='/'}
+			>
+				Войти в приложение
+			</button>
 		</div>
 	</div>
 );

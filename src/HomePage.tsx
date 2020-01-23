@@ -1,15 +1,19 @@
 import React from 'react'
 
+import './index.scss'
+
 const HomePage = () => (
-	<div className="outBox">
-		<div className="HomePage">
+	<div className="HomePage">
+		<div className="HomePageBlock">
 			<h1>Список дел</h1>
 			<hr />
-			<a className="btn btn-primary btn-lg"
-				href="/CardList"
-				role="button">
+			
+			<button
+				className="btnToMainPage" 
+				onClick={() => window.location.href='/CardList'}
+			>
 				Заняться делами!
-			</a>
+			</button>
 		</div>
 	</div>
 );
