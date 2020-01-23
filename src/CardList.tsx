@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux"
 
+import './index.scss'
+
 import {
 	FilterDeletedState,
 	FilterDoneState,
@@ -83,15 +85,15 @@ class ConnectedCardList extends React.Component<IStateDispatchProps> {
 
 		let buttonMark: any;
 		if (markFlag) {
-			buttonMark = <button className="btnList" onClick={ this.props.cardUnMarkAll }> Всё отменить </button>
+			buttonMark = <button className="navButton" onClick={ this.props.cardUnMarkAll }> Всё отменить </button>
 		} else {
-			buttonMark = <button className="btnList" onClick={ this.props.cardMarkAll }> Всё готово </button>
+			buttonMark = <button className="navButton" onClick={ this.props.cardMarkAll }> Всё готово </button>
 		}		
 		return(
 			<section style={{height: '100%', width: '100%'}}>
 				{
 					(!cardSet) ? <label>Список пуст!</label> :
-						<div style = {{ 'marginTop': '11%' }}>
+						<div style = {{ 'marginTop': '150px' }}>
 							{
 								cardSet.map(item => {
 									return (
@@ -109,6 +111,7 @@ class ConnectedCardList extends React.Component<IStateDispatchProps> {
 
 				<div className="navPanel">
 					<div className="navPanelTop">
+						{/* <div className="navPanelCheckBoxArea" style={{backgroundColor:"red"}}> */}
 						<div className="navPanelCheckBoxArea">
 							<label className="lblCheckbox"> Удалённые </label>
 							<input
@@ -133,15 +136,16 @@ class ConnectedCardList extends React.Component<IStateDispatchProps> {
 						</div>
 
 						{
+							// <div className="navPanelBtnArea" style={{backgroundColor:"blue"}}>
 							<div className="navPanelBtnArea">
 								{
-									(!this.props.FilterDeleted) ? <div style={{'marginRight': '5px', 'float': 'left'}}> {buttonMark} </div> : <span></span>
+									(!this.props.FilterDeleted) ? <div style={{'marginRight': '5px', 'float': 'left'}}> {buttonMark} </div> : null
 								}
 
 								{
 									(this.props.FilterDeleted) ?
 										<div>
-											<button className="btn btn-danger btnList"
+											<button className="navButton"
 												onClick={() => this.props.clearDeletedCards()}
 												style = {{'float': 'left'}}
 											>
@@ -151,36 +155,60 @@ class ConnectedCardList extends React.Component<IStateDispatchProps> {
 										: <span></span>
 								}
 
-								<a
-									className="btn btn-warning btnList"
+								{/* <a
+									className="btnToMainPage"
 									style = {{ 'float': 'right' }}
 									role="button"
 									href="/"
 								>
 									На главную
-								</a>
+								</a> */}
+								<div style={{'marginRight': '0px', 'float': 'right'}}>
+								<span style={{	'color': 'yellow', 
+												'float': 'left', 
+												'height': '40px', 
+												'width': '2px', 
+												'backgroundColor': 'red',
+												'marginRight': '5px'
+												
+											}}>
+								</span>
+								<button onClick={() => window.location.href='/'} className="navButton" >
+									На главную
+								</button>
+								</div>
 							</div>
 						}
 					</div>
 
+					{/* <div className="navPanelBottom" style={{backgroundColor:"green"}}> */}
 					<div className="navPanelBottom">
+						<div style={{'width': '27.5%', 'marginRight': '5px'}}>
 						<input
 							name="cardText"
-							className="form-control"
 							type="text"
-							style={{ 'width': '18%', 'marginRight': '5px' }}
+							style={{ 'width': '100%',
+									'height': '25px', 
+									'marginRight': '5px',
+									'border': '1px solid red',
+									'borderRadius': '5px',
+									'fontSize': '11pt' 
+								}}
 							value={ this.state.cardText }
 							onChange={ this.cardNewChangeText }
 							placeholder={"введите текст здесь"}
 						/>
+						</div>
 
+						<div style={{'marginLeft': '5px'}}>
 						<button
-							className="btn btn-primary btnList"
+							className="navButton"
 							// Style={"float:right;"}
 							onClick={() => this.props.addCard(this.state.cardText)}
 						>
 							Добавить
 						</button>
+						</div>
 					</div>
 				</div>
 			</section>

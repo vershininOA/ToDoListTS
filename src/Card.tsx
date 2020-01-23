@@ -18,19 +18,27 @@ type ICardProps = typeof mapDispatchToProps & ICard;
 
 const ConnectedCard: React.FC<ICardProps> = (props: ICardProps) => {
 	let cardStyle: string = "";
+	let bgItemColor: string = "";
 
 	if (props.deleted) {
 		if (props.done) {
-			cardStyle = "cardItemDeletedDone"
-		} else cardStyle = "cardItemDeleted"
-	} else if (props.done) cardStyle = "cardItemDone";
+			cardStyle = "cardItemDeletedDone";
+			bgItemColor = "#CCC"
+		} else {
+			cardStyle = "cardItemDeleted";
+			bgItemColor = "#fc6"
+		}
+	} else if (props.done) {
+		cardStyle = "cardItemDone";
+		bgItemColor = "MediumSeaGreen";
+	}
 
 	return(
 			<div className="cardBox">
-				<div className="cardItem">
+				<div className="cardItem" style={{'backgroundColor': bgItemColor}}>
 					<div className={cardStyle}>
-						<div className="card-body">
-							<p className="card-text">
+						<p style={{'display': 'flex', 'alignItems': 'center', 'justifyContent': 'center'}}>
+						{/* <div style={{'display': 'flex', 'alignItems': 'center', 'justifyContent': 'center'}}> */}
 								<textarea 
 									id={props.todoId.toString()}
 									className="cardTextarea"
@@ -39,8 +47,8 @@ const ConnectedCard: React.FC<ICardProps> = (props: ICardProps) => {
 									value={props.todoText}
 									onChange={(event) => props.changeCardText(event.target)}
 								/>
-							</p>
-						</div>
+						{/* </div> */}
+						</p>
 
 						<div className="cardBottomArea">
 							<div className="cardBottomCheckboxArea">
