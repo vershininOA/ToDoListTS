@@ -3,7 +3,8 @@ import {
 	CARD_DELETE,
 	CARD_DONE,
 	CARD_CHANGE_TEXT,
-	CARD_CLEAR_DELETED
+	CARD_CLEAR_DELETED,
+	CARD_HANDLE_MARK
 } from '../constants/types';
 
 import {
@@ -12,9 +13,8 @@ import {
 	SHOW_NEED_DONE,
 	SET_FILTER_DELETED,
 	SET_FILTER_DONE,
-	SET_FILTER_NEED_DONE, CARD_MARK_ALL, CARD_UNMARK_ALL
-}
-from "../constants/types";
+	SET_FILTER_NEED_DONE
+} from "../constants/types";
 
 import IAction from '../interfaces/IAction'
 import IAppState from '../interfaces/IAppState'
@@ -23,8 +23,8 @@ import ICard from '../interfaces/ICard'
 import Data from "../Data";
 
 const getMaxCardId = () => {
-	let maxId: number = Data.reduce(
-		(currentMaxId: number, item: any) => (item.todoId > currentMaxId) ? item.todoId : currentMaxId,
+	const maxId: number = Data.reduce(
+		(currentMaxId: number, item: ICard) => (item.todoId > currentMaxId) ? item.todoId : currentMaxId,
 		0
 	);
 	return maxId;
@@ -37,7 +37,7 @@ const initialState: IAppState = {
 	filterDone: false,
 	filterNeedDone: false,
 	filterDeleted: false,
-	flag: false
+	markFlag: false
 };
 
 export const rootReducer = (state: IAppState = initialState, action: IAction) => {
@@ -50,30 +50,20 @@ export const rootReducer = (state: IAppState = initialState, action: IAction) =>
 		}
 
 		case SET_FILTER_DONE: {
-			let fd: boolean = !state.filterDone;
-			let newShowState: string;
-
-			(fd) ? newShowState = SHOW_DONE : newShowState = SHOW_ALL;
-
 			return {
 				...state,
-				showCardsState: newShowState,
-				filterDone: fd,
+				showCardsState: (!state.filterDone) ? SHOW_DONE : SHOW_ALL,
+				filterDone: !state.filterDone,
 				filterNeedDone: false
 			}
 		}
 
 		case SET_FILTER_NEED_DONE: {
-			let fd: boolean = !state.filterNeedDone;
-			let newShowState: string;
-
-			(fd) ? newShowState = SHOW_NEED_DONE : newShowState = SHOW_ALL;
-
 			return {
 				...state,
-				showCardsState: newShowState,
+				showCardsState: (!state.filterNeedDone) ? SHOW_NEED_DONE : SHOW_ALL,
 				filterDone: false,
-				filterNeedDone: fd
+				filterNeedDone: !state.filterNeedDone
 			}
 		}
 
@@ -91,7 +81,7 @@ export const rootReducer = (state: IAppState = initialState, action: IAction) =>
 		}
 
 		case CARD_DELETE: {
-			let newData: ICard[] = state.data.map((item: ICard) => {
+			const newData: ICard[] = state.data.map((item: ICard) => {
 				if (item.todoId === action.id) item.deleted = !item.deleted;
 				return item;
 			});
@@ -103,7 +93,7 @@ export const rootReducer = (state: IAppState = initialState, action: IAction) =>
 		}
 
 		case CARD_DONE: {
-			let newData: ICard[] = state.data.map((item: ICard) => {
+			const newData: ICard[] = state.data.map((item: ICard) => {
 				if (item.todoId === action.id) item.done = !item.done;
 				return item;
 			});
@@ -115,11 +105,10 @@ export const rootReducer = (state: IAppState = initialState, action: IAction) =>
 		}
 
 		case CARD_CHANGE_TEXT: {
-			let newData: ICard[] = state.data.map((item: ICard) => {
+			const newData: ICard[] = state.data.map((item: ICard) => {
 				if (item.todoId.toString() === action.target.id.toString()) {
 					item.todoText = action.target.value;
 				}
-
 				return item
 			});
 
@@ -130,7 +119,7 @@ export const rootReducer = (state: IAppState = initialState, action: IAction) =>
 		}
 
 		case CARD_CLEAR_DELETED: {
-			let newData: ICard[] = state.data.filter((item: ICard) => { return !item.deleted });
+			const newData: ICard[] = state.data.filter((item: ICard) => { return !item.deleted });
 
 			return {
 				...state,
@@ -138,21 +127,9 @@ export const rootReducer = (state: IAppState = initialState, action: IAction) =>
 			}
 		}
 
-		case CARD_MARK_ALL: {
-			let newData: ICard[] = state.data.map((item: ICard) => {
-				if (!item.deleted) item.done = true;
-				return item
-			});
-
-			return {
-				...state,
-				data: newData
-			}
-		}
-
-		case CARD_UNMARK_ALL: {
-			let newData: ICard[] = state.data.map((item: ICard) => {
-				if (!item.deleted) item.done = false;
+		case CARD_HANDLE_MARK: {
+			const newData: ICard[] = state.data.map((item: ICard) => {
+				if (!item.deleted) item.done = action.markStatus;
 				return item
 			});
 

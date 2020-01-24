@@ -8,56 +8,46 @@ import {
 import IAppState from '../interfaces/IAppState'
 import ICard from '../interfaces/ICard'
 
-const Cards = (state: IAppState): ICard[] => {
-	return state.data;
-};
+const Cards = (state: IAppState): ICard[] => state.data;
 
-export const showCardsState = (state: IAppState): string => {
-	return state.showCardsState;
-};
+export const showCardsState = (state: IAppState): string => state.showCardsState;
 
-export const FilterDeletedState = (state: IAppState): boolean => {
-	return state.filterDeleted;
-};
+export const FilterDeletedState = (state: IAppState): boolean => state.filterDeleted;
 
-export const FilterDoneState = (state: IAppState): boolean => {
-	return state.filterDone;
-};
+export const FilterDoneState = (state: IAppState): boolean => state.filterDone;
 
-export const FilterNeedDoneState = (state: IAppState): boolean => {
-	return state.filterNeedDone;
-};
+export const FilterNeedDoneState = (state: IAppState): boolean => state.filterNeedDone;
 
 export const getMarkFlag = (state: IAppState): boolean => {
-	let flag: boolean = false;
+	let markFlag: boolean = false;
 
 	let tmpData: ICard[] = state.data.filter((item: ICard) => { return !item.deleted });
-	flag = tmpData.reduce(
+	markFlag = tmpData.reduce(
 		(currentDoneFlag: boolean, item: ICard) => (item.done && currentDoneFlag),
 		true
 	);
 
-	return flag
+	return markFlag
 };
 
 export const VisibleCards = createSelector(
 	[showCardsState, Cards, FilterDeletedState, FilterDoneState, FilterNeedDoneState],
-	(st, cds, fDel, fDone, fNeedDone) => {
-		switch (st) {
+	(_showCardsState, _Cards, _FilterDeletedState, _FilterDoneState, _FilterNeedDoneState) => {
+		switch (_showCardsState) {
 			case SHOW_ALL: {
-				return cds.filter((item: ICard) => (item.deleted === fDel));
+				return _Cards.filter((item: ICard) => (item.deleted === _FilterDeletedState));
 			}
 
 			case SHOW_DONE: {
-				return cds.filter((item: ICard) => (item.deleted === fDel && item.done === fDone));
+				return _Cards.filter((item: ICard) => (item.deleted === _FilterDeletedState && item.done === _FilterDoneState));
 			}
 
 			case SHOW_NEED_DONE: {
-				return cds.filter((item: ICard) => (item.deleted === fDel && item.done === !fNeedDone));
+				return _Cards.filter((item: ICard) => (item.deleted === _FilterDeletedState && item.done === !_FilterNeedDoneState));
 			}
 
 			default:
-				return cds;
+				return _Cards;
 		}
 	}
 );

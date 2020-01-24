@@ -7,10 +7,10 @@ const HomePage = () => (
 		<div className="HomePageBlock">
 			<h1>Список дел</h1>
 			<hr />
-			
+
 			<button
-				className="btnToMainPage" 
-				onClick={() => window.location.href='/CardList'}
+				className="btnToMainPage"
+				onClick={() => window.location.href = '/CardList'}
 			>
 				Заняться делами!
 			</button>

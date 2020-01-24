@@ -7,5 +7,5 @@ export default interface IAppState {
 	filterDone: boolean,
 	filterNeedDone: boolean,
 	filterDeleted: boolean,
-	flag: boolean
+	markFlag: boolean
 }

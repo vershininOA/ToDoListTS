@@ -3,8 +3,7 @@ export const CARD_DELETE = 'CARD_DELETE';
 export const CARD_DONE = 'CARD_DONE';
 export const CARD_CHANGE_TEXT = 'CARD_CHANGE_TEXT';
 export const CARD_CLEAR_DELETED = 'CARD_CLEAR_DELETED';
-export const CARD_MARK_ALL = 'CARD_MARK_ALL';
-export const CARD_UNMARK_ALL = 'CARD_UNMARK_ALL';
+export const CARD_HANDLE_MARK = 'CARD_HANDLE_MARK';
 
 export const SHOW_ALL = 'SHOW_ALL';
 export const SHOW_DONE = 'SHOW_DONE';

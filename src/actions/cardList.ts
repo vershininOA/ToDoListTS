@@ -3,8 +3,7 @@ import {
 	SET_FILTER_DONE,
 	SET_FILTER_NEED_DONE,
 	CARD_CLEAR_DELETED,
-	CARD_MARK_ALL,
-	CARD_UNMARK_ALL
+	CARD_HANDLE_MARK
 } from "../constants/types"
 
 export const setFilterDeletedState = () => ({
@@ -23,10 +22,7 @@ export const clearDeletedCards = () => ({
 	type: CARD_CLEAR_DELETED
 });
 
-export const cardMarkAll = () => ({
-	type: CARD_MARK_ALL
-});
-
-export const cardUnMarkAll = () => ({
-	type: CARD_UNMARK_ALL
-});
+export const cardHandleMark = (_markStatus: boolean) => ({
+	type: CARD_HANDLE_MARK,
+	markStatus: _markStatus
+})

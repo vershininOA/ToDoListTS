@@ -5,17 +5,10 @@ const NotFound = () => (
 		<div className="ErrorPageBlock">
 			<h1>Ошибка в адресе</h1>
 			<hr />
-			{/* <a
-				className="btn btn-warning btn-lg"
-				href="/"
-				role="button"
-			>
-				Войти в приложение
-            </a> */}
 
 			<button
-				className="btnToMainPage" 
-				onClick={() => window.location.href='/'}
+				className="btnToMainPage"
+				onClick={() => window.location.href = '/'}
 			>
 				Войти в приложение
 			</button>
