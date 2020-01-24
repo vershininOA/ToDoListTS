@@ -77,27 +77,26 @@ class ConnectedCardList extends React.Component<IStateDispatchProps> {
 	};
 
 	render() {
-		const cardSet: ICard[] = this.props.VisibleCards;
-		const markFlag: boolean = this.props.MarkFlag;
+		const cardSet = this.props.VisibleCards;
+		const markFlag = this.props.MarkFlag;
 
-		let buttonMark: object;
-		if (markFlag) {
-			buttonMark = <button
+		const buttonMark = markFlag
+		? (
+			<button
 				className="navButton"
 				onClick={() => this.props.cardHandleMark(false)}
 			>
 				Всё отменить
-						</button>
-		} else {
-			buttonMark = <button
+			</button>
+		 )
+		 : (
+			<button
 				className="navButton"
 				onClick={() => this.props.cardHandleMark(true)}
 			>
 				Всё готово
-						</button>
-		}
-
-		buttonMark = buttonMark as React.HTMLFactory<HTMLButtonElement>
+			</button>
+		 )
 
 		return (
 			<section className="sectionFullSize">
