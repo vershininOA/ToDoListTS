@@ -4,9 +4,9 @@ import { connect } from "react-redux"
 import './index.scss'
 
 import {
-	FilterDeletedState,
-	FilterDoneState,
-	FilterNeedDoneState,
+	getIsFilterDeletedActive,
+	getIsFilterDoneActive,
+	getIsFilterNeedDoneActive,
 	getMarkFlag,
 	VisibleCards
 } from "../src/selectors/index";
@@ -33,22 +33,11 @@ interface IStateProps {
 	VisibleCards: ICard[]
 }
 
-interface IDispatchProps {
-	setFilterDeletedState: () => void,
-	setFilterDoneState: () => void,
-	setFilterNeedDoneState: () => void,
-	addCard: (cardText: string) => void,
-	clearDeletedCards: () => void,
-	cardHandleMark: (markStatus: boolean) => void
-}
-
-interface IStateDispatchProps extends IStateProps, IDispatchProps { };
-
 const mapStateToProps = (state: IAppState): IStateProps => {
 	return {
-		FilterDeleted: FilterDeletedState(state),
-		FilterDone: FilterDoneState(state),
-		FilterNeedDone: FilterNeedDoneState(state),
+		FilterDeleted: getIsFilterDeletedActive(state),
+		FilterDone: getIsFilterDoneActive(state),
+		FilterNeedDone: getIsFilterNeedDoneActive(state),
 		MarkFlag: getMarkFlag(state),
 		VisibleCards: VisibleCards(state)
 	}
@@ -62,6 +51,10 @@ const mapDispatchToProps = {
 	clearDeletedCards,
 	cardHandleMark
 };
+
+type IStateDispatchProps = (
+	ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps
+)
 
 class ConnectedCardList extends React.Component<IStateDispatchProps> {
 	state = {
@@ -77,43 +70,41 @@ class ConnectedCardList extends React.Component<IStateDispatchProps> {
 	};
 
 	render() {
-		const cardSet = this.props.VisibleCards;
-		const markFlag = this.props.MarkFlag;
+		const {MarkFlag, VisibleCards} = this.props;
 
-		const buttonMark = markFlag
-		? (
-			<button
-				className="navButton"
-				onClick={() => this.props.cardHandleMark(false)}
-			>
-				Всё отменить
-			</button>
-		 )
-		 : (
-			<button
-				className="navButton"
-				onClick={() => this.props.cardHandleMark(true)}
-			>
-				Всё готово
-			</button>
-		 )
+		const buttonMark = MarkFlag
+		?	(
+				<button
+					className="navButton"
+					onClick={() => this.props.cardHandleMark(false)}
+				>
+					Всё отменить
+				</button>
+			)
+		 : 	(
+				<button
+					className="navButton"
+					onClick={() => this.props.cardHandleMark(true)}
+				>
+					Всё готово
+				</button>
+			)
 
 		return (
 			<section className="sectionFullSize">
 				{
-					(!cardSet) ? <label>Список пуст!</label> :
-						<div className="marginTop150px">
+					(!VisibleCards) 
+						? <label>Список пуст!</label> 
+						: <div className="marginTop150px">
 							{
-								cardSet.map(item => {
-									return (
+								VisibleCards.map(item => (
 										<Card key={item.todoId}
 											todoId={item.todoId}
 											todoText={item.todoText}
 											done={item.done}
 											deleted={item.deleted}
 										/>
-									);
-								})
+									))
 							}
 						</div>
 				}
@@ -128,9 +119,7 @@ class ConnectedCardList extends React.Component<IStateDispatchProps> {
 								onChange={() => this.props.setFilterDeletedState()}
 							/>
 
-							<label
-								className="lblCheckbox"
-							>
+							<label className="lblCheckbox">
 								Сделано
 							</label>
 
@@ -140,9 +129,7 @@ class ConnectedCardList extends React.Component<IStateDispatchProps> {
 								onChange={() => this.props.setFilterDoneState()}
 							/>
 
-							<label
-								className="lblCheckbox"
-							>
+							<label className="lblCheckbox">
 								Нужно сделать
 							</label>
 
@@ -159,15 +146,15 @@ class ConnectedCardList extends React.Component<IStateDispatchProps> {
 							}
 
 							{
-								(this.props.FilterDeleted) ?
-									<div className="ClearDeletedWrapperBtn">
-										<button
-											className="navButton"
-											onClick={() => this.props.clearDeletedCards()}
-										>
-											Очистить
-										</button>
-									</div>
+								(this.props.FilterDeleted) 
+									?	<div className="ClearDeletedWrapperBtn">
+											<button
+												className="navButton"
+												onClick={() => this.props.clearDeletedCards()}
+											>
+												Очистить
+											</button>
+										</div>
 									: null
 							}
 
@@ -200,7 +187,7 @@ class ConnectedCardList extends React.Component<IStateDispatchProps> {
 								onClick={() => this.props.addCard(this.state.cardText)}
 							>
 								Добавить
-						</button>
+							</button>
 						</div>
 					</div>
 				</div>
@@ -209,5 +196,4 @@ class ConnectedCardList extends React.Component<IStateDispatchProps> {
 	}
 }
 
-const CardList = connect(mapStateToProps, mapDispatchToProps)(ConnectedCardList);
-export default CardList;
+export default connect(mapStateToProps, mapDispatchToProps)(ConnectedCardList);

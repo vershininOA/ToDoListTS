@@ -44,7 +44,7 @@ const ConnectedCard: React.FC<ICardProps> = (props: ICardProps) => {
 							rows={3}
 							disabled={props.deleted}
 							value={props.todoText}
-							onChange={(event) => props.changeCardText(event.target)}
+							onChange={(event) => props.changeCardText({id: Number.parseInt(event.target.id), cardText: event.target.value})}
 						/>
 					</p>
 

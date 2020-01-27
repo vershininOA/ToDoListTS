@@ -81,7 +81,7 @@ export const rootReducer = (state: IAppState = initialState, action: IAction) =>
 		}
 
 		case CARD_DELETE: {
-			const newData: ICard[] = state.data.map((item: ICard) => {
+			const newData = state.data.map((item: ICard) => {
 				if (item.todoId === action.id) item.deleted = !item.deleted;
 				return item;
 			});
@@ -93,7 +93,7 @@ export const rootReducer = (state: IAppState = initialState, action: IAction) =>
 		}
 
 		case CARD_DONE: {
-			const newData: ICard[] = state.data.map((item: ICard) => {
+			const newData = state.data.map((item: ICard) => {
 				if (item.todoId === action.id) item.done = !item.done;
 				return item;
 			});
@@ -105,9 +105,9 @@ export const rootReducer = (state: IAppState = initialState, action: IAction) =>
 		}
 
 		case CARD_CHANGE_TEXT: {
-			const newData: ICard[] = state.data.map((item: ICard) => {
-				if (item.todoId.toString() === action.target.id.toString()) {
-					item.todoText = action.target.value;
+			const newData = state.data.map((item: ICard) => {
+				if (item.todoId === action.cardParams.id) {
+					item.todoText = action.cardParams.cardText;
 				}
 				return item
 			});
@@ -119,16 +119,14 @@ export const rootReducer = (state: IAppState = initialState, action: IAction) =>
 		}
 
 		case CARD_CLEAR_DELETED: {
-			const newData: ICard[] = state.data.filter((item: ICard) => { return !item.deleted });
-
 			return {
 				...state,
-				data: newData
+				data: state.data.filter((item: ICard) => { return !item.deleted })
 			}
 		}
 
 		case CARD_HANDLE_MARK: {
-			const newData: ICard[] = state.data.map((item: ICard) => {
+			const newData = state.data.map((item: ICard) => {
 				if (!item.deleted) item.done = action.markStatus;
 				return item
 			});

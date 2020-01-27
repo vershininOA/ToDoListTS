@@ -183,44 +183,11 @@ input[type=checkbox] {
 }
 
 // buttons
-button.cardButton {
+button {
 	font-size: 14px;
 	text-decoration: none;
 	cursor: pointer;
 	display:block;
-	width: 100px;
-	height: 30px;
-	float: right;
-
-	margin:5px auto;
-	text-align:center;
-	padding: 1px 5px;
-	color: #717171;
-	border-radius: 4px;
-	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
-	box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2), inset 0 0 6px 0 rgba(255, 255, 255, 0.3), 0 1px 2px rgba(0, 0, 0, 0.4);
-	background: #f6f6f6;
-	background: -webkit-gradient(linear, left top, left bottom, from(#f6f6f6), to(#d4d4d4));
-	background: -webkit-linear-gradient(#f6f6f6, #d4d4d4);
-	background-image: -moz-linear-gradient(top, #f6f6f6, #d4d4d4);
-	background-image: -moz-gradient(top, #f6f6f6, #d4d4d4);
-	border: 1px solid #a1a1a1;
-}
-
-button.cardButton:hover {
-	background: #eecc11;
-	background: -webkit-gradient(linear, left top, left bottom, from(#f6f6f6), to(#eecc11));
-	background: -webkit-linear-gradient(#f6f6f6, #eecc11);
-	background-image: -moz-linear-gradient(top, #f6f6f6, #eecc11);
-	background-image: -moz-gradient(top, #f6f6f6, #eecc11);
-}
-
-button.navButton {
-	font-size: 14px;
-	text-decoration: none;
-	cursor: pointer;
-	display:block;
-	width: 101px;
 	height: 30px;
 	
 	margin:5px auto;
@@ -236,45 +203,40 @@ button.navButton {
 	background-image: -moz-linear-gradient(top, #f6f6f6, #d4d4d4);
 	background-image: -moz-gradient(top, #f6f6f6, #d4d4d4);
 	border: 1px solid #a1a1a1;
-}
 
-button.navButton:hover {
-	background: #eecc11;
-	background: -webkit-gradient(linear, left top, left bottom, from(#f6f6f6), to(#eecc11));
-	background: -webkit-linear-gradient(#f6f6f6, #eecc11);
-	background-image: -moz-linear-gradient(top, #f6f6f6, #eecc11);
-	background-image: -moz-gradient(top, #f6f6f6, #eecc11);
-}
+	&.cardButton {
+		width: 100px;
+		float: right;
+		&:hover {
+			background: #eecc11;
+			background: -webkit-gradient(linear, left top, left bottom, from(#f6f6f6), to(#eecc11));
+			background: -webkit-linear-gdient(#f6f6f6, #eecc11);
+			background-image: -moz-linear-gradient(top, #f6f6f6, #eecc11);
+			background-image: -moz-gradient(top, #f6f6f6, #eecc11);
+		}
+	}
 
-button.btnToMainPage {
-	font-size: 14px;
-	text-decoration: none;
-	cursor: pointer;
-	display:block;
-	width: 150px;
-	height: 30px;
+	&.navButton {
+		width: 101px;
+		&:hover {
+			background: #eecc11;
+			background: -webkit-gradient(linear, left top, left bottom, from(#f6f6f6), to(#eecc11));
+			background: -webkit-linear-gradient(#f6f6f6, #eecc11);
+			background-image: -moz-linear-gradient(top, #f6f6f6, #eecc11);
+			background-image: -moz-gradient(top, #f6f6f6, #eecc11);
+		}
+	}
 
-	margin:5px auto;
-	text-align:center;
-	padding: 1px 5px;
-	color: #717171;
-	border-radius: 4px;
-	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
-	box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2), inset 0 0 6px 0 rgba(255, 255, 255, 0.3), 0 1px 2px rgba(0, 0, 0, 0.4);
-	background: #f6f6f6;
-	background: -webkit-gradient(linear, left top, left bottom, from(#f6f6f6), to(#d4d4d4));
-	background: -webkit-linear-gradient(#f6f6f6, #d4d4d4);
-	background-image: -moz-linear-gradient(top, #f6f6f6, #d4d4d4);
-	background-image: -moz-gradient(top, #f6f6f6, #d4d4d4);
-	border: 1px solid #a1a1a1;
-}
-
-button.btnToMainPage:hover {
-	background: MediumSeaGreen;
-	background: -webkit-gradient(linear, left top, left bottom, from(#f6f6f6), to(MediumSeaGreen));
-	background: -webkit-linear-gradient(#f6f6f6, MediumSeaGreen);
-	background-image: -moz-linear-gradient(top, #f6f6f6, MediumSeaGreen);
-	background-image: -moz-gradient(top, #f6f6f6, MediumSeaGreen);
+	&.toCardListButton {
+		width: 150px;
+		&:hover {
+			background: MediumSeaGreen;
+			background: -webkit-gradient(linear, left top, left bottom, from(#f6f6f6), to(MediumSeaGreen));
+			background: -webkit-linear-gradient(#f6f6f6, MediumSeaGreen);
+			background-image: -moz-linear-gradient(top, #f6f6f6, MediumSeaGreen);
+			background-image: -moz-gradient(top, #f6f6f6, MediumSeaGreen);
+		}
+	}
 }
 
 .ToMainPageWrapperBtn {

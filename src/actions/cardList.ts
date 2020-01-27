@@ -22,7 +22,7 @@ export const clearDeletedCards = () => ({
 	type: CARD_CLEAR_DELETED
 });
 
-export const cardHandleMark = (_markStatus: boolean) => ({
+export const cardHandleMark = (markStatus: boolean) => ({
 	type: CARD_HANDLE_MARK,
-	markStatus: _markStatus
+	markStatus
 })

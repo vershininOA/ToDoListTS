@@ -5,22 +5,24 @@ import {
 	CARD_CHANGE_TEXT
 } from "../constants/types";
 
-export const addCard = (cardText: string) => ({
+import ICardParams from "../interfaces/ICardParams";
+
+export const addCard = (todoText: string) => ({
 	type: CARD_ADD,
-	todoText: cardText
+	todoText
 });
 
-export const deleteCard = (todoId: number) => ({
+export const deleteCard = (id: number) => ({
 	type: CARD_DELETE,
-	id: todoId
+	id
 });
 
-export const doneCard = (todoId: number) => ({
+export const doneCard = (id: number) => ({
 	type: CARD_DONE,
-	id: todoId
+	id
 });
 
-export const changeCardText = (evTarget: any) => ({
+export const changeCardText = (cardParams: ICardParams) => ({
 	type: CARD_CHANGE_TEXT,
-	target: evTarget
+	cardParams
 });

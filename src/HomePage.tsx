@@ -1,6 +1,24 @@
 import React from 'react'
+import { useHistory } from "react-router-dom"
 
 import './index.scss'
+
+function CardListButton() {
+	const history = useHistory();
+
+	function handleClick() {
+		history.push("/CardList");
+	}
+
+	return (
+		<button 
+			className="toCardListButton"
+			onClick={handleClick}
+		>
+			Заняться делами!
+		</button>
+	);
+}
 
 const HomePage = () => (
 	<div className="HomePage">
@@ -8,12 +26,7 @@ const HomePage = () => (
 			<h1>Список дел</h1>
 			<hr />
 
-			<button
-				className="btnToMainPage"
-				onClick={() => window.location.href = '/CardList'}
-			>
-				Заняться делами!
-			</button>
+			{ CardListButton() }
 		</div>
 	</div>
 );
