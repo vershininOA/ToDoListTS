@@ -204,27 +204,21 @@ button {
 	background-image: -moz-gradient(top, #f6f6f6, #d4d4d4);
 	border: 1px solid #a1a1a1;
 
+	&:hover {
+		background: #eecc11;
+		background: -webkit-gradient(linear, left top, left bottom, from(#f6f6f6), to(#eecc11));
+		background: -webkit-linear-gdient(#f6f6f6, #eecc11);
+		background-image: -moz-linear-gradient(top, #f6f6f6, #eecc11);
+		background-image: -moz-gradient(top, #f6f6f6, #eecc11);		
+	}
+
 	&.cardButton {
 		width: 100px;
 		float: right;
-		&:hover {
-			background: #eecc11;
-			background: -webkit-gradient(linear, left top, left bottom, from(#f6f6f6), to(#eecc11));
-			background: -webkit-linear-gdient(#f6f6f6, #eecc11);
-			background-image: -moz-linear-gradient(top, #f6f6f6, #eecc11);
-			background-image: -moz-gradient(top, #f6f6f6, #eecc11);
-		}
 	}
 
 	&.navButton {
 		width: 101px;
-		&:hover {
-			background: #eecc11;
-			background: -webkit-gradient(linear, left top, left bottom, from(#f6f6f6), to(#eecc11));
-			background: -webkit-linear-gradient(#f6f6f6, #eecc11);
-			background-image: -moz-linear-gradient(top, #f6f6f6, #eecc11);
-			background-image: -moz-gradient(top, #f6f6f6, #eecc11);
-		}
 	}
 
 	&.toCardListButton {
