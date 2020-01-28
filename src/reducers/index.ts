@@ -4,7 +4,10 @@ import {
 	CARD_DONE,
 	CARD_CHANGE_TEXT,
 	CARD_CLEAR_DELETED,
-	CARD_HANDLE_MARK
+	CARD_HANDLE_MARK,
+	CARD_ADD_STARTED,
+	CARD_ADD_SUCCESS,
+	CARD_ADD_FAILURE
 } from '../constants/types';
 
 import {
@@ -37,7 +40,8 @@ const initialState: IAppState = {
 	filterDone: false,
 	filterNeedDone: false,
 	filterDeleted: false,
-	markFlag: false
+	markFlag: false,
+	addCardStarted: false
 };
 
 export const rootReducer = (state: IAppState = initialState, action: IAction) => {
@@ -78,6 +82,33 @@ export const rootReducer = (state: IAppState = initialState, action: IAction) =>
 					"deleted": false
 				}])
 			};
+		}
+
+		case CARD_ADD_STARTED: {
+			console.log(`Сработало CARD_ADD_STARTED`);
+
+			return {
+				...state,
+				addCardStarted: true
+			}
+		}
+
+		case CARD_ADD_SUCCESS: {
+			console.log(`Сработало CARD_ADD_SUCCESS`);
+
+			return {
+				...state,
+				addCardStarted: false
+			}
+		}
+
+		case CARD_ADD_FAILURE: {
+			console.log(`Сработало CARD_ADD_FAILURE`);
+
+			return {
+				...state,
+				addCardStarted: false
+			}
 		}
 
 		case CARD_DELETE: {

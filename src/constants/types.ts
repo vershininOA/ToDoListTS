@@ -5,6 +5,10 @@ export const CARD_CHANGE_TEXT = 'CARD_CHANGE_TEXT';
 export const CARD_CLEAR_DELETED = 'CARD_CLEAR_DELETED';
 export const CARD_HANDLE_MARK = 'CARD_HANDLE_MARK';
 
+export const CARD_ADD_STARTED = 'CARD_ADD_STARTED';
+export const CARD_ADD_SUCCESS = 'CARD_ADD_SUCCESS';
+export const CARD_ADD_FAILURE = 'CARD_ADD_FAILURE';
+
 export const SHOW_ALL = 'SHOW_ALL';
 export const SHOW_DONE = 'SHOW_DONE';
 export const SHOW_NEED_DONE = 'SHOW_NEED_DONE';

@@ -1,13 +1,13 @@
-import React from 'react';
-import { createStore } from 'redux';
-
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { createStore, applyMiddleware } from 'redux'
+import { Provider } from 'react-redux'
+import thunk from 'redux-thunk'
 import {
 	BrowserRouter as Router,
 	Switch,
 	Route
 } from "react-router-dom";
-
-import { Provider } from 'react-redux'
 
 import './App.css';
 import './index.scss'
@@ -18,7 +18,8 @@ import NotFound from './notfound'
 
 import { rootReducer } from './reducers/index'
 
-const store = createStore(rootReducer);
+// const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 const App: React.FC = () => {
 	return (

@@ -20,18 +20,14 @@ import {
 } from "./actions/cardList"
 
 import Card from './Card'
-import ICard from './interfaces/ICard'
-import { addCard } from "./actions/card";
+
+import { 
+	addCard,
+	addCardAsync
+} from "./actions/card";
 
 import IAppState from './interfaces/IAppState'
-
-interface IStateProps {
-	FilterDeleted: boolean,
-	FilterDone: boolean,
-	FilterNeedDone: boolean,
-	MarkFlag: boolean,
-	VisibleCards: ICard[]
-}
+import IStateProps from './interfaces/IStateProps'
 
 const mapStateToProps = (state: IAppState): IStateProps => {
 	return {
@@ -48,11 +44,12 @@ const mapDispatchToProps = {
 	setFilterDoneState,
 	setFilterNeedDoneState,
 	addCard,
+	addCardAsync,
 	clearDeletedCards,
 	cardHandleMark
 };
 
-type IStateDispatchProps = (
+export type IStateDispatchProps = (
 	ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps
 )
 
@@ -184,7 +181,8 @@ class ConnectedCardList extends React.Component<IStateDispatchProps> {
 						<div className="marginLeft5px">
 							<button
 								className="navButton"
-								onClick={() => this.props.addCard(this.state.cardText)}
+								// onClick={() => this.props.addCard(this.state.cardText)}
+								onClick={() => this.props.addCardAsync(this.state.cardText)}
 							>
 								Добавить
 							</button>
